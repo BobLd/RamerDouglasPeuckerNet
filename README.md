@@ -2,6 +2,7 @@
 Given a curve composed of line segments (Polyline), find a similar curve with fewer points.
 
 https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
+
 From Wikipedia:
 The Ramer–Douglas–Peucker algorithm, also known as the Douglas–Peucker algorithm and iterative end-point fit algorithm, is an algorithm that decimates a curve composed of line segments to a similar curve with fewer points. 
 
