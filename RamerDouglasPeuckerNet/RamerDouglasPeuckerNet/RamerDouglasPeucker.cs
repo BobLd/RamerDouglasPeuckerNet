@@ -5,8 +5,8 @@ namespace RamerDouglasPeuckerNet
 {
     /*
      * Sources:
-     * https://codereview.stackexchange.com/questions/29002/ramer-douglas-peucker-algorithm
      * https://www.codeproject.com/Articles/18936/A-C-Implementation-of-Douglas-Peucker-Line-Approxi
+     * https://codereview.stackexchange.com/questions/29002/ramer-douglas-peucker-algorithm
      * Optimisations:
      *  - Do not use Sqrt function
      *  - Use unsafe code
