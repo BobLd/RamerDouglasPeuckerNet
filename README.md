@@ -1,4 +1,6 @@
 # RamerDouglasPeuckerNet
+Ramer-Douglas-Peucker algorithm for 2D data in C#.
+
 Given a curve composed of line segments (Polyline), find a similar curve with fewer points.
 
 https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
