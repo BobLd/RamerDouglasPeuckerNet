@@ -3,10 +3,19 @@ using System.Linq;
 
 namespace RamerDouglasPeuckerNet
 {
-    class RamerDouglasPeucker
+    /*
+     * Sources:
+     * https://codereview.stackexchange.com/questions/29002/ramer-douglas-peucker-algorithm
+     * https://www.codeproject.com/Articles/18936/A-C-Implementation-of-Douglas-Peucker-Line-Approxi
+     * Optimisations:
+     *  - Do not use Sqrt function
+     *  - Use unsafe code
+     *  - Avoid duplicate computations in loop
+     */
+    public static class RamerDouglasPeucker
     {
         /// <summary>
-        /// Uses the Douglas Peucker algorithm to reduce the number of points.
+        /// Uses the Ramer Douglas Peucker algorithm to reduce the number of points.
         /// </summary>
         /// <param name="points">The points.</param>
         /// <param name="tolerance">The tolerance.</param>

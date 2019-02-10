@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RamerDouglasPeuckerNet", "RamerDouglasPeuckerNet\RamerDouglasPeuckerNet.csproj", "{C22F273E-CC5E-4481-8610-95E1173CE223}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RamerDouglasPeuckerNet", "RamerDouglasPeuckerNet\RamerDouglasPeuckerNet.csproj", "{C22F273E-CC5E-4481-8610-95E1173CE223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RamerDouglasPeuckerNet.Test", "RamerDouglasPeuckerNet.Test\RamerDouglasPeuckerNet.Test.csproj", "{9772383E-CF01-42DA-8BAA-F8E524A12756}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C22F273E-CC5E-4481-8610-95E1173CE223}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C22F273E-CC5E-4481-8610-95E1173CE223}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C22F273E-CC5E-4481-8610-95E1173CE223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9772383E-CF01-42DA-8BAA-F8E524A12756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9772383E-CF01-42DA-8BAA-F8E524A12756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9772383E-CF01-42DA-8BAA-F8E524A12756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9772383E-CF01-42DA-8BAA-F8E524A12756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
