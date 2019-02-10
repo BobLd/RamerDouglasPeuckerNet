@@ -11,7 +11,7 @@ namespace RamerDouglasPeuckerNet
         /// <param name="points">The points.</param>
         /// <param name="tolerance">The tolerance.</param>
         /// <returns></returns>
-        public static Point[] DouglasPeuckerReduction(Point[] points, double tolerance)
+        public static Point[] Reduce(Point[] points, double tolerance)
         {
             if (points == null || points.Count() < 3) return points;
             if (double.IsInfinity(tolerance) || double.IsNaN(tolerance)) return points;
@@ -32,7 +32,7 @@ namespace RamerDouglasPeuckerNet
                 lastPoint--;
             }
 
-            DouglasPeuckerReduction(points, firstPoint, lastPoint, tolerance, ref pointIndexsToKeep);
+            Reduce(points, firstPoint, lastPoint, tolerance, ref pointIndexsToKeep);
 
             int l = pointIndexsToKeep.Count;
             Point[] returnPoints = new Point[l];
@@ -59,7 +59,7 @@ namespace RamerDouglasPeuckerNet
         /// <param name="lastPoint">The last point.</param>
         /// <param name="tolerance">The tolerance.</param>
         /// <param name="pointIndexsToKeep">The point index to keep.</param>
-        private static void DouglasPeuckerReduction(Point[] points, int firstPoint,
+        private static void Reduce(Point[] points, int firstPoint,
             int lastPoint, double tolerance, ref List<int> pointIndexsToKeep)
         {
             double maxDistance = 0;
@@ -100,8 +100,8 @@ namespace RamerDouglasPeuckerNet
             {
                 //Add the largest point that exceeds the tolerance
                 pointIndexsToKeep.Add(indexFarthest);
-                DouglasPeuckerReduction(points, firstPoint, indexFarthest, tolerance, ref pointIndexsToKeep);
-                DouglasPeuckerReduction(points, indexFarthest, lastPoint, tolerance, ref pointIndexsToKeep);
+                Reduce(points, firstPoint, indexFarthest, tolerance, ref pointIndexsToKeep);
+                Reduce(points, indexFarthest, lastPoint, tolerance, ref pointIndexsToKeep);
             }
         }
     }
