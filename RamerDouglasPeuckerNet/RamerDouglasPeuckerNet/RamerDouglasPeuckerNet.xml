@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RamerDouglasPeuckerNet</name>
+    </assembly>
+    <members>
+        <member name="M:RamerDouglasPeuckerNet.RamerDouglasPeucker.Reduce(RamerDouglasPeuckerNet.Point[],System.Double)">
+            <summary>
+            Uses the Ramer Douglas Peucker algorithm to reduce the number of points.
+            </summary>
+            <param name="points">The points.</param>
+            <param name="tolerance">The tolerance.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RamerDouglasPeuckerNet.RamerDouglasPeucker.Reduce(RamerDouglasPeuckerNet.Point[],System.Int32,System.Int32,System.Double,System.Collections.Generic.List{System.Int32}@)">
+            <summary>
+            Douglases the peucker reduction.
+            </summary>
+            <param name="points">The points.</param>
+            <param name="firstPoint">The first point.</param>
+            <param name="lastPoint">The last point.</param>
+            <param name="tolerance">The tolerance.</param>
+            <param name="pointIndexsToKeep">The point index to keep.</param>
+        </member>
+    </members>
+</doc>

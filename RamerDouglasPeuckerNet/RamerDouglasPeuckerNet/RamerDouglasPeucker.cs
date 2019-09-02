@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RamerDouglasPeuckerNet
@@ -22,38 +23,37 @@ namespace RamerDouglasPeuckerNet
         /// <returns></returns>
         public static Point[] Reduce(Point[] points, double tolerance)
         {
-            if (points == null || points.Count() < 3) return points;
+            if (points == null || points.Length < 3) return points;
             if (double.IsInfinity(tolerance) || double.IsNaN(tolerance)) return points;
             tolerance *= tolerance;
             if (tolerance <= float.Epsilon) return points;
 
-            int firstPoint = 0;
-            int lastPoint = points.Count() - 1;
-            List<int> pointIndexsToKeep = new List<int>();
+            int firstIndex = 0;
+            int lastIndex = points.Length - 1;
+            List<int> indexesToKeep = new List<int>();
 
             // Add the first and last index to the keepers
-            pointIndexsToKeep.Add(firstPoint);
-            pointIndexsToKeep.Add(lastPoint);
+            indexesToKeep.Add(firstIndex);
+            indexesToKeep.Add(lastIndex);
 
             // The first and the last point cannot be the same
-            while (points[firstPoint].Equals(points[lastPoint]))
+            while (points[firstIndex].Equals(points[lastIndex]))
             {
-                lastPoint--;
+                lastIndex--;
             }
 
-            Reduce(points, firstPoint, lastPoint, tolerance, ref pointIndexsToKeep);
+            Reduce(points, firstIndex, lastIndex, tolerance, ref indexesToKeep);
 
-            int l = pointIndexsToKeep.Count;
+            int l = indexesToKeep.Count;
             Point[] returnPoints = new Point[l];
-            pointIndexsToKeep.Sort();
+            indexesToKeep.Sort();
 
             unsafe
             {
                 fixed (Point* ptr = points, result = returnPoints)
                 {
-                    Point* res = result;
                     for (int i = 0; i < l; ++i)
-                        *(res + i) = *(ptr + pointIndexsToKeep[i]);
+                        *(result + i) = *(ptr + indexesToKeep[i]);
                 }
             }
 
@@ -64,12 +64,12 @@ namespace RamerDouglasPeuckerNet
         /// Douglases the peucker reduction.
         /// </summary>
         /// <param name="points">The points.</param>
-        /// <param name="firstPoint">The first point.</param>
-        /// <param name="lastPoint">The last point.</param>
+        /// <param name="firstIndex">The first point's index.</param>
+        /// <param name="lastIndex">The last point's index.</param>
         /// <param name="tolerance">The tolerance.</param>
-        /// <param name="pointIndexsToKeep">The point index to keep.</param>
-        private static void Reduce(Point[] points, int firstPoint,
-            int lastPoint, double tolerance, ref List<int> pointIndexsToKeep)
+        /// <param name="indexesToKeep">The points' index to keep.</param>
+        private static void Reduce(Point[] points, int firstIndex, int lastIndex, double tolerance,
+            ref List<int> indexesToKeep)
         {
             double maxDistance = 0;
             int indexFarthest = 0;
@@ -78,39 +78,35 @@ namespace RamerDouglasPeuckerNet
             {
                 fixed (Point* samples = points)
                 {
-                    Point point1 = *(samples + firstPoint);
-                    Point point2 = *(samples + lastPoint);
+                    Point point1 = *(samples + firstIndex);
+                    Point point2 = *(samples + lastIndex);
                     double distXY = point1.X * point2.Y - point2.X * point1.Y;
                     double distX = point2.X - point1.X;
                     double distY = point1.Y - point2.Y;
                     double bottom = distX * distX + distY * distY;
 
-                    for (int index = firstPoint; index < lastPoint; index++)
+                    for (int i = firstIndex; i < lastIndex; i++)
                     {
-                        //Area = |(1/2)(x1y2 + x2y3 + x3y1 - x2y1 - x3y2 - x1y3)|   *Area of triangle
-                        //Base = v((x1-x2)²+(x1-x2)²)                               *Base of Triangle*
-                        //Area = .5*Base*H                                          *Solve for height
-                        //Height = Area/.5/Base
-
-                        Point point = *(samples + index);
+                        // Perpendicular Distance
+                        Point point = *(samples + i);
                         double area = distXY + distX * point.Y + distY * point.X;
                         double distance = (area / bottom) * area;
 
                         if (distance > maxDistance)
                         {
                             maxDistance = distance;
-                            indexFarthest = index;
+                            indexFarthest = i;
                         }
                     }
                 }
             }
 
-            if (maxDistance > tolerance && indexFarthest != 0)
+            if (maxDistance > tolerance) // && indexFarthest != 0)
             {
                 //Add the largest point that exceeds the tolerance
-                pointIndexsToKeep.Add(indexFarthest);
-                Reduce(points, firstPoint, indexFarthest, tolerance, ref pointIndexsToKeep);
-                Reduce(points, indexFarthest, lastPoint, tolerance, ref pointIndexsToKeep);
+                indexesToKeep.Add(indexFarthest);
+                Reduce(points, firstIndex, indexFarthest, tolerance, ref indexesToKeep);
+                Reduce(points, indexFarthest, lastIndex, tolerance, ref indexesToKeep);
             }
         }
     }
