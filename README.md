@@ -1,3 +1,5 @@
+See [Ramer-Douglas-Peucker Net V2](https://github.com/BobLd/RamerDouglasPeuckerNetV2) for an updated and non-parametric version 
+
 # RamerDouglasPeuckerNet Standard
 Ramer-Douglas-Peucker algorithm for 2D data in C#.
 
